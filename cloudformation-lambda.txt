@@ -15,8 +15,10 @@
                                 
                                 "import boto3",
                                 "client = boto3.client('ssm')",
+                                "s3 = boto3.client ('s3')",
                                 "def lambda_handler(event, context):",
                                 "    parameter = client.get_parameter(Name='amar', WithDecryption=True)",
+                                "    s3.put_object(Bucket = "s3-demo-test", Key = "store2.txt", Body = str(parameter))",
                                 "    return parameter ['Parameter']['Value']"
                             ]
                         ]
