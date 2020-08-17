@@ -1,0 +1,32 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "A template is for creating lambda ",
+    "Resources": {
+        "LambdaResource": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "FunctionName": "exercise-lambda",
+                
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                
+                                "import boto3",
+                                "client = boto3.client('ssm')",
+                                "def lambda_handler(event, context):",
+                                "    parameter = client.get_parameter(Name='amar', WithDecryption=True)",
+                                "    return parameter ['Parameter']['Value']"
+                            ]
+                        ]
+                    }
+                },
+                "Description": "Used to run job",
+                "Handler": "index.lambda_handler",
+                "Runtime": "python3.6",
+                "Timeout": 120
+            }
+        }
+  }
+}
