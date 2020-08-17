@@ -1,8 +1,7 @@
 import boto3
 
-client = boto3.client('ssm')
-
 def lambda_handler(event, context):
+client = boto3.client('ssm')
     parameter = client.get_parameter(Name='amar', WithDecryption=True)
     print(parameter)
     return parameter ['Parameter']['Value']
